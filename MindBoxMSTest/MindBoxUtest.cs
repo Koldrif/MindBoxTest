@@ -23,4 +23,12 @@ public class MindBoxUTest
         
         Assert.AreEqual(expected, SquareCalculator.CalcCircleSquare(testRadius), 0.001);
     }
+
+    [TestMethod]
+    public void TestTriangleForRightSides()
+    {
+        var expected = true;
+        
+        Assert.AreEqual(expected, SquareCalculator.IsRightTriangle(3, 4, 5));
+    }
 }

@@ -25,4 +25,20 @@ public static class SquareCalculator
         double semiPerimeter = (a + b + c) / 2;
         return Math.Sqrt(semiPerimeter * (semiPerimeter - a) * (semiPerimeter - b) * (semiPerimeter - c));
     }
-}
+
+    public static bool IsRightTriangle(double a, double b, double c)
+    {
+        var argArray = new[] {a, b, c};
+        var maxSide = argArray.Max();
+        var maxIndex = Array.IndexOf(argArray, maxSide);
+        double tmp = default;
+        for (int i = 0; i < argArray.Length; i++)
+        {
+            if (i == maxIndex) continue;
+            tmp += argArray[i] * argArray[i];
+        }
+
+        return Math.Abs(tmp - maxSide * maxSide) < 1e-9;
+    }
+    
+};
