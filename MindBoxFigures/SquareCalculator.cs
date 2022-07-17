@@ -1,14 +1,21 @@
-﻿namespace MindBoxFigures;
+﻿using System.Collections;
+
+namespace MindBoxFigures;
 
 public static class SquareCalculator
 {
-    public static double CalcCircleSquare(double radius)
+    public static double CalcCircleSquare(double param)
     {
-        if (radius < 0)
+        if (param < 0)
         {
             throw new ArgumentOutOfRangeException();
         }
-        return Math.PI * radius * radius;
+        return Math.PI * param * param;
+    }
+    
+    public static double CalcCircleSquare(Circle param)
+    {
+        return param.GetSquare();
     }
 
     public static double CalcTriangleSquare(double a, double b, double c)
@@ -26,19 +33,51 @@ public static class SquareCalculator
         return Math.Sqrt(semiPerimeter * (semiPerimeter - a) * (semiPerimeter - b) * (semiPerimeter - c));
     }
 
-    public static bool IsRightTriangle(double a, double b, double c)
+    public static double CalcTriangleSquare(List<double> collection)
     {
-        var argArray = new[] {a, b, c};
-        var maxSide = argArray.Max();
-        var maxIndex = Array.IndexOf(argArray, maxSide);
-        double tmp = default;
-        for (int i = 0; i < argArray.Length; i++)
+        if (collection[0] < 0 || collection[1] < 0 || collection[2] < 0)
         {
-            if (i == maxIndex) continue;
-            tmp += argArray[i] * argArray[i];
+            throw new ArgumentOutOfRangeException();
         }
 
-        return Math.Abs(tmp - maxSide * maxSide) < 1e-9;
+        if (collection[0] + collection[1] < 0 || collection[0] + collection[2] < 0 || collection[1] + collection[2] < 0)
+        {
+            throw new ArgumentOutOfRangeException();
+        }
+        double semiPerimeter = (collection[0] + collection[1] + collection[2]) / 2;
+        return Math.Sqrt(semiPerimeter * (semiPerimeter - collection[0]) * (semiPerimeter - collection[1]) * (semiPerimeter - collection[2]));
+    }
+    
+    public static double CalcTriangleSquare(Triangle triangle)
+    {
+        return triangle.GetSquare();
+    }
+
+    public static bool IsRightTriangle(Triangle triangle)
+    {
+        return triangle.IsRightTriangle();
+    }
+
+    public static double GetSquare(AShape figure)
+    {
+        // До конца не понял задания "Вычисление площади фигуры без знания типа фигуры в compile-time"
+        if (figure.GetType() == typeof(Circle))
+        {
+            return CalcCircleSquare((Circle)figure);
+        }
+        else if (figure.GetType() == typeof(Triangle))
+        {
+            return CalcTriangleSquare((Triangle) figure);
+        }
+        else
+        {
+            return figure.GetSquare();
+        }
+    }
+
+    public static double GetSquare(double r)
+    {
+        return CalcCircleSquare(r);
     }
     
 };

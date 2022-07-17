@@ -21,7 +21,7 @@ public class MindBoxUTest
         double testRadius = 10;
         double expected = Math.PI * testRadius * testRadius;
         
-        Assert.AreEqual(expected, SquareCalculator.CalcCircleSquare(testRadius), 0.001);
+        Assert.AreEqual(expected, SquareCalculator.GetSquare(testRadius), 0.001);
     }
 
     [TestMethod]
@@ -29,6 +29,6 @@ public class MindBoxUTest
     {
         var expected = true;
         
-        Assert.AreEqual(expected, SquareCalculator.IsRightTriangle(3, 4, 5));
+        Assert.AreEqual(expected, SquareCalculator.IsRightTriangle(new Triangle(3, 4, 5)));
     }
 }
