@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Reflection;
 
 namespace MindBoxFigures;
 
@@ -61,12 +60,24 @@ public static class SquareCalculator
 
     public static double GetSquare(AShape figure)
     {
-        return figure.GetSquare();
-        
+        // До конца не понял задания "Вычисление площади фигуры без знания типа фигуры в compile-time"
+        if (figure.GetType() == typeof(Circle))
+        {
+            return CalcCircleSquare((Circle)figure);
+        }
+        else if (figure.GetType() == typeof(Triangle))
+        {
+            return CalcTriangleSquare((Triangle) figure);
+        }
+        else
+        {
+            return figure.GetSquare();
+        }
     }
 
     public static double GetSquare(double r)
     {
         return CalcCircleSquare(r);
     }
+    
 };
