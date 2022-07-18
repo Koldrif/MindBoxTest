@@ -60,19 +60,7 @@ public static class SquareCalculator
 
     public static double GetSquare(AShape figure)
     {
-        // До конца не понял задания "Вычисление площади фигуры без знания типа фигуры в compile-time"
-        if (figure.GetType() == typeof(Circle))
-        {
-            return CalcCircleSquare((Circle)figure);
-        }
-        else if (figure.GetType() == typeof(Triangle))
-        {
-            return CalcTriangleSquare((Triangle) figure);
-        }
-        else
-        {
-            return figure.GetSquare();
-        }
+         return figure.GetSquare();
     }
 
     public static double GetSquare(double r)
