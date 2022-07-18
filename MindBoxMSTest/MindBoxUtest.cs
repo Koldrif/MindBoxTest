@@ -31,4 +31,13 @@ public class MindBoxUTest
         
         Assert.AreEqual(expected, SquareCalculator.IsRightTriangle(new Triangle(3, 4, 5)));
     }
+
+    [TestMethod]
+    public void TestHighLoadCalculation()
+    {
+        for (int i = 0; i < 100000; i++)
+        {
+            SquareCalculator.GetSquare(new Circle(i));
+        }
+    }
 }

@@ -60,7 +60,9 @@ public static class SquareCalculator
 
     public static double GetSquare(AShape figure)
     {
-         return figure.GetSquare();
+        AShape.Method method = figure.GetRightDelegate(figure);
+        return method();
+        //return figure.GetSquare();
     }
 
     public static double GetSquare(double r)
