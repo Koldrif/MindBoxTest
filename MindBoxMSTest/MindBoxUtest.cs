@@ -31,4 +31,14 @@ public class MindBoxUTest
         
         Assert.AreEqual(expected, SquareCalculator.IsRightTriangle(new Triangle(3, 4, 5)));
     }
+
+    [TestMethod]
+    public void TestTypeofCheck()
+    {
+        Circle c = new Circle(100);
+        var t = new Triangle(3, 4, 5);
+        
+        Assert.AreEqual(c.GetSquare(), SquareCalculator.GetSquare(c));
+        Assert.AreEqual(t.GetSquare(), SquareCalculator.GetSquare(t));
+    }
 }
